@@ -9,10 +9,9 @@ import (
 func main() {
 	r := gin.Default()
 
-	// Add CORS Middleware
+
 	r.Use(setupCors())
 
-	// Mock user data
 	users := map[string]string{
 		"john_doe": "password123",
 	}
@@ -37,10 +36,8 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "Login successful", "status": "ok"})
 	})
 
-	r.Run(":8080") // Listen and serve on localhost:8080
+	r.Run(":8080") 
 }
-
-// CORS Middleware
 func setupCors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
