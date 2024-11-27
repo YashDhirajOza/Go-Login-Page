@@ -1,202 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login/Sign-up Page</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrix Themed Login</title>
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: url("image.jpeg") no-repeat;
-        background-position: center;
-        background-size: cover;
-      }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: black;
+      overflow: hidden;
+      color: #0f0;
+    }
 
-      @keyframes rainbow-glow {
-        0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3); }
-        14% { box-shadow: 0 0 10px rgba(255, 127, 0, 0.7), 0 0 20px rgba(255, 127, 0, 0.5), 0 0 30px rgba(255, 127, 0, 0.3); }
-        28% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.7), 0 0 20px rgba(255, 255, 0, 0.5), 0 0 30px rgba(255, 255, 0, 0.3); }
-        42% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5), 0 0 30px rgba(0, 255, 0, 0.3); }
-        57% { box-shadow: 0 0 10px rgba(0, 0, 255, 0.7), 0 0 20px rgba(0, 0, 255, 0.5), 0 0 30px rgba(0, 0, 255, 0.3); }
-        71% { box-shadow: 0 0 10px rgba(75, 0, 130, 0.7), 0 0 20px rgba(75, 0, 130, 0.5), 0 0 30px rgba(75, 0, 130, 0.3); }
-        85% { box-shadow: 0 0 10px rgba(143, 0, 255, 0.7), 0 0 20px rgba(143, 0, 255, 0.5), 0 0 30px rgba(143, 0, 255, 0.3); }
-        100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3); }
-      }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-      .login {
-        width: 400px;
-        background: rgba(255, 255, 255, 0.3);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        color: #333;
-        border-radius: 10px;
-        padding: 20px 50px;
-        animation: rainbow-glow 10s linear infinite;
-      }
+    .login {
+      width: 400px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #0f0;
+      border-radius: 10px;
+      padding: 20px 50px;
+      z-index: 2;
+      color: #0f0;
+      text-shadow: 0 0 10px #0f0;
+    }
 
-      .login h1 {
-        font-size: 36px;
-        text-align: center;
-      }
+    .login h1 {
+      font-size: 36px;
+      text-align: center;
+    }
 
-      .login .input-box {
-        width: 100%;
-        height: 50px;
-        background: transparent;
-        margin: 30px 0;
-        position: relative;
-      }
+    .login .input-box {
+      width: 100%;
+      height: 50px;
+      margin: 30px 0;
+      position: relative;
+    }
 
-      .input-box input {
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        border-radius: 40px;
-        color: #333;
-        padding: 20px 45px 20px 20px;
-      }
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      border: 2px solid #0f0;
+      border-radius: 40px;
+      color: #0f0;
+      padding: 20px 45px 20px 20px;
+      font-size: 16px;
+    }
 
-      .input-box input::placeholder {
-        color: #666;
-      }
+    .input-box input::placeholder {
+      color: #0f0;
+    }
 
-      .input-box i {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #333;
-      }
+    .input-box i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #0f0;
+    }
 
-      .login .remember {
-        display: flex;
-        justify-content: space-between;
-        font-size: 16px;
-        margin: -15px 0px 15px;
-      }
+    .login .remember {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      margin: -15px 0px 15px;
+    }
 
-      .remember label input {
-        accent-color: #333;
-        margin-right: 3px;
-      }
+    .remember label input {
+      accent-color: #0f0;
+      margin-right: 3px;
+    }
 
-      .remember a {
-        text-decoration: none;
-        color: #333;
-      }
+    .remember a {
+      text-decoration: none;
+      color: #0f0;
+    }
 
-      .remember a:hover {
-        text-decoration: underline;
-      }
+    .remember a:hover {
+      text-decoration: underline;
+    }
 
-      #btn {
-        width: 100%;
-        height: 45px;
-        background: #333;
-        border: none;
-        outline: none;
-        border-radius: 40px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        color: #fff;
-        font-weight: 600;
-      }
+    #btn {
+      width: 100%;
+      height: 45px;
+      background: #0f0;
+      border: none;
+      outline: none;
+      border-radius: 40px;
+      box-shadow: 0 0 10px #0f0;
+      cursor: pointer;
+      color: black;
+      font-weight: 600;
+    }
 
-      .login .register {
-        font-size: 15px;
-        text-align: center;
-        margin-top: 20px;
-      }
+    .login .register {
+      font-size: 15px;
+      text-align: center;
+      margin-top: 20px;
+    }
 
-      .register p {
-        margin-top: 10px;
-      }
+    .register p {
+      margin-top: 10px;
+    }
 
-      .register p a {
-        text-decoration: none;
-        color: #333;
-      }
+    .register p a {
+      text-decoration: none;
+      color: #0f0;
+    }
 
-      .register p a:hover {
-        text-decoration: underline;
-      }
+    .register p a:hover {
+      text-decoration: underline;
+    }
 
-      #message {
-        text-align: center;
-        color: red;
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="login">
-      <form id="loginForm">
-        <h1>Login</h1>
-        <div class="input-box">
-          <input id="username" type="text" placeholder="Username" required />
-          <i class="bx bxs-user"></i>
-        </div>
-        <div class="input-box">
-          <input id="password" type="password" placeholder="Password" required />
-          <i class="bx bxs-lock-alt"></i>
-        </div>
-        <div id="message"></div>
-        <div class="remember">
-          <label for="remember"
-            ><input type="checkbox" name="remember" id="remember" />Remember
-            me</label
-          >
-          <a href="#">Forgot Password!?</a>
-        </div>
-        <button type="submit" class="btn" id="btn">Login</button>
-        <div class="register">
-          <p>Don't have an account?<a href="#">Register</a></p>
-        </div>
-      </form>
-    </div>
-    <script>
-      const form = document.getElementById('loginForm');
+    #message {
+      text-align: center;
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="login">
+    <form id="loginForm">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input id="username" type="text" placeholder="Username" required />
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box">
+        <input id="password" type="password" placeholder="Password" required />
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <div id="message"></div>
+      <div class="remember">
+        <label for="remember"
+          ><input type="checkbox" name="remember" id="remember" />Remember
+          me</label
+        >
+        <a href="#">Forgot Password!?</a>
+      </div>
+      <button type="submit" class="btn" id="btn">Login</button>
+      <div class="register">
+        <p>Don't have an account?<a href="#">Register</a></p>
+      </div>
+    </form>
+  </div>
 
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
 
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-        try {
-          const response = await fetch('http://localhost:8080/api/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-          });
+    const letters = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
 
-          const result = await response.json();
-          document.getElementById('message').textContent = result.message;
-        } catch (error) {
-          document.getElementById('message').textContent =
-            "Error connecting to the server.";
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f0';
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
-      });
-    </script>
-  </body>
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 50);
+
+    gsap.from('.login', { opacity: 0, y: 50, duration: 1 });
+  </script>
+</body>
 </html>
