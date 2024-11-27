@@ -171,39 +171,45 @@
     </form>
   </div>
 
-  <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
+ <script>
+  document.getElementById("loginForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const messageDiv = document.getElementById("message");
 
-    const letters = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(1);
+    try {
+ 
+      const response = await fetch("http://localhost:8080/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const data = await response.json();
 
-      ctx.fillStyle = '#0f0';
-      ctx.font = `${fontSize}px monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
+      if (response.ok) {
+      
+        messageDiv.style.color = "green";
+        messageDiv.textContent = data.message;
+        setTimeout(() => {
+          messageDiv.textContent = ""; 
+        }, 3000);
+      } else {
+        
+        messageDiv.style.color = "red";
+        messageDiv.textContent = data.message;
       }
+    } catch (error) {
+      console.error("Error:", error);
+      messageDiv.style.color = "red";
+      messageDiv.textContent = "An error occurred. Please try again.";
     }
+  });
+</script>
 
-    setInterval(drawMatrix, 50);
-
-    gsap.from('.login', { opacity: 0, y: 50, duration: 1 });
-  </script>
 </body>
 </html>
